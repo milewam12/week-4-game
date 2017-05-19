@@ -6,37 +6,61 @@ $(document).ready(function () {
     var matchNumber = "";
 
     var crystals = {
-        crystal1 : 0, 
-        crystal2 : 0,
-        crystal3 : 0,
-        crystal4 : 0
+
+        orange: {
+            name: "Orange",
+            value: 0
+        },
+        blue: {
+            name: "blue",
+            value: 0
+        },
+        pink: {
+            name: "pink",
+            value: 0
+        },
+         green: {
+            name: "green",
+            value: 0
+        },
+        
     }
 
     //Scores
     var winCounter = 0;
     var lossesCounter = 0;
+    var currentScore = 0;
     var userScore = 0;
     
     //FUNCTIONS//
         //========================================================================//
 
+function startGame(params) {
+
+    var currentScore = 0;
     var getRandom =  function (min , max) {
         var random = Math.floor(Math.random() * (max - min)) + min;
         return random;
     }
 
-    crystals.crystal1 = getRandom(1 , 12);
-    crystals.crystal2 = getRandom(1 , 12);
-    crystals.crystal3 = getRandom(1 , 12);
-    crystals.crystal4 = getRandom(1 , 12);
-    console.log(crystals);
+    crystals.orange.value = getRandom(1 , 12);
+    crystals.blue.value = getRandom(1 , 12);
+    crystals.pink.value = getRandom(1 , 12);
+    crystals.green.value = getRandom(1 , 12);
+    console.log(crystals.pink.value);
 
     matchNumber = getRandom(19 , 120);
     console.log(matchNumber);
- 
 
-    var startGame = function name(params) {
     $("#match").text(matchNumber); 
+
+
+
+
+
+     crystals = crystals + $(this).attr(getRandom (1, 12));
+     console.log("I dont know exactly if I'm doing 'this' right " + this);
+
     
     }
 
@@ -45,18 +69,18 @@ startGame();
 
 // Here I'm tryning to use attr. a parameter to get value of the crystals....
 // crystals.attr("data-value", getRandom);
- crystals = crystals + $(this).attr("data-value");
+
 
 // Then when you click a crystal that attr. is suppose to be passed to Crystal Value....
 
 $(".crystal-button").on("click" , function () {
    
-  var crystalValue = ($(this).attr("data-value"));
+  var crystalValue = ($(this).attr(getRandom (1, 12)));
     crystalValue = parseInt(crystalValue);
 console.log(crystalValue);
 
     // userScore = crystals.crystal1;
-    $("#score").text(userScore);
+    $("#score").text(currentScore);
 }
 
 
