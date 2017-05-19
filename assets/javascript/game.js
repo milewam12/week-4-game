@@ -2,7 +2,7 @@ $(document).ready(function () {
     
     //VARIABLES//
     //========================================================================//
-
+    var playGame;
     var matchNumber = "";
 
     var crystals = {
@@ -30,7 +30,7 @@ $(document).ready(function () {
     var winCounter = 0;
     var lossesCounter = 0;
     var currentScore = 0;
-    var userScore = 0;
+
     
     //FUNCTIONS//
         //========================================================================//
@@ -52,40 +52,90 @@ function startGame(params) {
     matchNumber = getRandom(19 , 120);
     console.log(matchNumber);
 
-    $("#match").text(matchNumber); 
-
-
-
-
-
-     crystals = crystals + $(this).attr(getRandom (1, 12));
-     console.log("I dont know exactly if I'm doing 'this' right " + this);
-
-    
+    $("#match").text(matchNumber);    
     }
 
 startGame();
-// HERE IS MY BIG DILEMA..... S.O.S!!!
-
-// Here I'm tryning to use attr. a parameter to get value of the crystals....
-// crystals.attr("data-value", getRandom);
 
 
-// Then when you click a crystal that attr. is suppose to be passed to Crystal Value....
+//On click events
 
-$(".crystal-button").on("click" , function () {
-   
-  var crystalValue = ($(this).attr(getRandom (1, 12)));
-    crystalValue = parseInt(crystalValue);
-console.log(crystalValue);
-
-    // userScore = crystals.crystal1;
+$(".orange").on("click" , function () {
+    currentScore += crystals.orange.value;
     $("#score").text(currentScore);
-}
+
+        if(currentScore === matchNumber){
+            winCounter++;
+           $(".winCount").text(winCounter);
+           return startGame();
+
+
+        } else if (currentScore >= matchNumber) {
+            lossesCounter++;
+             $(".lossesCount").text(lossesCounter);
+             return startGame(); 
+        }   
+         
+
+});
+
+
+$(".blue").on("click" , function () {
+    currentScore += crystals.blue.value;
+    $("#score").text(currentScore);
+   
+        if(currentScore === matchNumber){
+            winCounter++;
+        $(".winCount").text(winCounter);
+        return startGame; 
+
+        } else if (currentScore >= matchNumber) {
+            lossesCounter++;
+            $(".lossesCount").text(lossesCounter);
+            return startGame; 
+        } 
+    
+});
+
+$(".pink").on("click" , function () {
+    currentScore += crystals.pink.value;
+    $("#score").text(currentScore);
+    
+        if(currentScore === matchNumber){
+            winCounter++;
+            $(".winCount").text(winCounter);
+            return startGame; 
+
+        } else if (currentScore >= matchNumber) {
+            lossesCounter++;
+             $(".lossesCount").text(lossesCounter);
+             return startGame; 
+        } 
+   
+});
+
+$(".green").on("click" , function () {
+    currentScore += crystals.green.value;
+    $("#score").text(currentScore);
+     
+        if(currentScore === matchNumber){
+            winCounter++;
+             $(".winCount").text(winCounter);
+             return startGame; 
+
+        } else if (currentScore >= matchNumber) {
+            lossesCounter++;
+              $(".lossesCount").text(lossesCounter);
+              return startGame; 
+        } 
+    
+      
+});
+
 
 
 
 //end of (document).ready
-)})
+});
 
 
