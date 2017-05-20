@@ -37,7 +37,9 @@ $(document).ready(function () {
 
 function startGame(params) {
 
-    var currentScore = 0;
+    currentScore = 0;
+    console.log(currentScore);
+
     var getRandom =  function (min , max) {
         var random = Math.floor(Math.random() * (max - min)) + min;
         return random;
@@ -47,15 +49,31 @@ function startGame(params) {
     crystals.blue.value = getRandom(1 , 12);
     crystals.pink.value = getRandom(1 , 12);
     crystals.green.value = getRandom(1 , 12);
-    console.log(crystals.pink.value);
+    console.log(crystals);
 
     matchNumber = getRandom(19 , 120);
     console.log(matchNumber);
 
-    $("#match").text(matchNumber);    
+    $("#match").text(matchNumber);  
+    $("#score").text(currentScore);  
     }
 
 startGame();
+
+function checkScore() {
+    if(currentScore === matchNumber){
+            winCounter++;
+           $(".winCount").text(winCounter);
+           return startGame();
+
+
+        } else if (currentScore > matchNumber) {
+            lossesCounter++;
+             $(".lossesCount").text(lossesCounter);
+             return startGame(); 
+        }   
+    
+}
 
 
 //On click events
@@ -63,19 +81,8 @@ startGame();
 $(".orange").on("click" , function () {
     currentScore += crystals.orange.value;
     $("#score").text(currentScore);
-
-        if(currentScore === matchNumber){
-            winCounter++;
-           $(".winCount").text(winCounter);
-           return startGame();
-
-
-        } else if (currentScore >= matchNumber) {
-            lossesCounter++;
-             $(".lossesCount").text(lossesCounter);
-             return startGame(); 
-        }   
-         
+    
+    checkScore();      
 
 });
 
@@ -83,52 +90,24 @@ $(".orange").on("click" , function () {
 $(".blue").on("click" , function () {
     currentScore += crystals.blue.value;
     $("#score").text(currentScore);
+    checkScore();     
    
-        if(currentScore === matchNumber){
-            winCounter++;
-        $(".winCount").text(winCounter);
-        return startGame; 
-
-        } else if (currentScore >= matchNumber) {
-            lossesCounter++;
-            $(".lossesCount").text(lossesCounter);
-            return startGame; 
-        } 
     
 });
 
 $(".pink").on("click" , function () {
     currentScore += crystals.pink.value;
     $("#score").text(currentScore);
+    checkScore();     
     
-        if(currentScore === matchNumber){
-            winCounter++;
-            $(".winCount").text(winCounter);
-            return startGame; 
-
-        } else if (currentScore >= matchNumber) {
-            lossesCounter++;
-             $(".lossesCount").text(lossesCounter);
-             return startGame; 
-        } 
-   
+ 
 });
 
 $(".green").on("click" , function () {
     currentScore += crystals.green.value;
     $("#score").text(currentScore);
-     
-        if(currentScore === matchNumber){
-            winCounter++;
-             $(".winCount").text(winCounter);
-             return startGame; 
+    checkScore();     
 
-        } else if (currentScore >= matchNumber) {
-            lossesCounter++;
-              $(".lossesCount").text(lossesCounter);
-              return startGame; 
-        } 
-    
       
 });
 
